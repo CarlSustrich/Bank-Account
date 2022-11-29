@@ -34,3 +34,32 @@ BankAccount.prototype.calculateDeposits = function(depositAmount) {
 BankAccount.prototype.findTotal = function () {
   this.total = this.initialDeposit + this.deposits - this.withdrawal;
 }
+
+//UI logic
+
+let newBankAccount = new BankAccount();
+
+function handleCreateAccount(e){
+  console.log ('running');
+  e.preventDefault();
+  document.querySelector("form#depositWithdraw").removeAttribute("class");
+  document.querySelector("form#createAccount").setAttribute("class", "hidden");
+  document.querySelector("div#results").removeAttribute("class");
+  
+  const username = document.querySelector("form#username").value;
+  const initialDeposit = document.querySelector("form#initialDeposit").value;
+  
+  
+  document.querySelector("span#name").innerText= username;
+  document.querySelector("span#name").innerText= username;
+  newBankAccount.name = username;
+  newBankAccount.initialDeposit = initialDeposit
+}
+
+function handleDepositWithdrawal(e) {
+
+}
+
+window.addEventListener('load', function() {
+  document.querySelector("form#createAccount").addEventListener("submit",handleCreateAccount)
+})
