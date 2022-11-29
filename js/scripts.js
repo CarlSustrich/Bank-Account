@@ -38,7 +38,7 @@ BankAccount.prototype.findTotal = function () {
 //UI logic
 
 let newBankAccount = new BankAccount();
-
+//
 function handleCreateAccount(e){
   console.log ('running');
   e.preventDefault();
