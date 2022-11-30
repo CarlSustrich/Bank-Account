@@ -8,24 +8,28 @@ function BankAccount (){
 }
 
 BankAccount.prototype.addInitialDeposit = function (firstDeposit) {
-  this.initialDeposit += firstDeposit;
+  if (firstDeposit) {
+    this.initialDeposit += firstDeposit;
+  } else {
+    this.initialDeposit = 0;
+  }
   return this.initialDeposit;
 }
 
 BankAccount.prototype.calculateWithdrawals = function(withdrawAmount) {
-  return this.withdrawals += withdrawAmount;
-  // if (withdrawAmount > 0){
-  //   return this.withdrawals += withdrawAmount;
-  // }else {
+  if (withdrawAmount > 0){
+    return this.withdrawals += withdrawAmount;
+  } 
+  // else {
   //   return this.withdrawals +=0
   // }
 }
 
 BankAccount.prototype.calculateDeposits = function(depositAmount) {
-  return this.deposits += depositAmount;
-  // if (depositAmount > 0){
-  //   return this.deposits += depositAmount;
-  // }else {
+  if (depositAmount > 0){
+    return this.deposits += depositAmount;
+  }
+  //else {
   //   return this.deposits +=0
   // }
 }
@@ -58,27 +62,57 @@ function handleCreateAccount(e){
 
 }
 
+// function handleDepositWithdrawal(e) {
+//   e.preventDefault();
+ 
+//   document.querySelector("span#total-balance").innerText= null;
+//   document.querySelector("span#total-withdrawls").innerText= null;
+//   document.querySelector("span#total-deposits").innerText= null;
+//   //parseInt(document.querySelector("input#initialDeposit").value);
+//   const depositsInput = parseInt(document.querySelector("input#deposit").value);
+//   newBankAccount.calculateDeposits(depositsInput);
+//   const withdrawalInput =parseInt(document.querySelector("input#withdrawal").value);
+//   newBankAccount.calculateWithdrawals(withdrawalInput);
+//   const totalAvailable = newBankAccount.findTotal();
+//   document.querySelector("span#total-balance").innerText=totalAvailable
+//   document.querySelector("span#total-withdrawls").innerText= newBankAccount.withdrawals
+//   document.querySelector("span#total-deposits").innerText= newBankAccount.deposits
+  
+//   document.querySelector("input#deposit").value = 0;
+//   document.querySelector("input#withdrawal").value = 0;
+
+//   console.log(newBankAccount);
+  
+// }
+
 function handleDepositWithdrawal(e) {
   e.preventDefault();
- 
   document.querySelector("span#total-balance").innerText= null;
-  document.querySelector("span#total-withdrawls").innerText= null;
+  document.querySelector("span#total-withdrawals").innerText= null;
   document.querySelector("span#total-deposits").innerText= null;
-  parseInt(document.querySelector("input#initialDeposit").value);
+
   const depositsInput = parseInt(document.querySelector("input#deposit").value);
-  newBankAccount.calculateDeposits(depositsInput);
   const withdrawalInput =parseInt(document.querySelector("input#withdrawal").value);
-  newBankAccount.calculateWithdrawals(withdrawalInput);
-  const totalAvailable = newBankAccount.findTotal();
+  
+
+  if (depositsInput) {
+    newBankAccount.calculateDeposits(depositsInput);
+  }
+
+  if (withdrawalInput) {
+    newBankAccount.calculateWithdrawals(withdrawalInput);
+  }
+
+  totalAvailable = newBankAccount.findTotal();
+  
   document.querySelector("span#total-balance").innerText=totalAvailable
-  document.querySelector("span#total-withdrawls").innerText= newBankAccount.withdrawals
+  document.querySelector("span#total-withdrawals").innerText= newBankAccount.withdrawals
   document.querySelector("span#total-deposits").innerText= newBankAccount.deposits
   
-  document.querySelector("input#deposit").value = 0;
-  document.querySelector("input#withdrawal").value = 0;
+  document.querySelector("input#deposit").value = null;
+  document.querySelector("input#withdrawal").value = null;
 
   console.log(newBankAccount);
-  
 }
 
 window.addEventListener('load', function() {
