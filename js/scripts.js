@@ -64,11 +64,11 @@ function handleDepositWithdrawal(e) {
   document.querySelector("span#total-balance").innerText= null;
   document.querySelector("span#total-withdrawls").innerText= null;
   document.querySelector("span#total-deposits").innerText= null;
-  const initialDepositInput = parseInt(document.querySelector("input#initialDeposit").value);
+  parseInt(document.querySelector("input#initialDeposit").value);
   const depositsInput = parseInt(document.querySelector("input#deposit").value);
-  const totalDepositsInput = newBankAccount.calculateDeposits(depositsInput);
+  newBankAccount.calculateDeposits(depositsInput);
   const withdrawalInput =parseInt(document.querySelector("input#withdrawal").value);
-  const totalwithdrawalInput= newBankAccount.calculateWithdrawals(withdrawalInput);
+  newBankAccount.calculateWithdrawals(withdrawalInput);
   const totalAvailable = newBankAccount.findTotal();
   document.querySelector("span#total-balance").innerText=totalAvailable
   document.querySelector("span#total-withdrawls").innerText= newBankAccount.withdrawals
